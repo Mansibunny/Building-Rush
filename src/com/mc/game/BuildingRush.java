@@ -23,11 +23,11 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		menuBg = new Texture("menuBg.jpg");
 		title = new Texture("title.png");
 		newgameButton = new Texture("newgameButton.png");
-		newgameButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, newgameButton.getWidth(), newgameButton.getHeight());
+		newgameButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 100, newgameButton.getWidth(), newgameButton.getHeight());
 		continueButton = new Texture("continueButton.png");
-		continueButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.5 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, continueButton.getWidth(), continueButton.getHeight());
+		continueButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 300, continueButton.getWidth(), continueButton.getHeight());
 		tutorialButton = new Texture("tutorialButton.png");
-		tutorialButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.5 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, tutorialButton.getWidth(), tutorialButton.getHeight());	
+		tutorialButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, tutorialButton.getWidth(), tutorialButton.getHeight());	
 		Gdx.input.setInputProcessor(this);
 	}
 
@@ -78,27 +78,27 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		    }
 		}
 		else{
-			batch.draw(newgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+			batch.draw(newgameButton, (int) (Gdx.graphics.getWidth()*0.2 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 100);
 		}
 		
 		if(continueButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
-		        page = 1;
+		        page = 2;
 		    }
 		}
 		else{
-			batch.draw(continueButton, (int) (Gdx.graphics.getWidth()*0.5 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+			batch.draw(continueButton, (int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 300);
 		}
 		
 		if(tutorialButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
-		        page = 1;
+		        page = 3;
 		    }
 		}
 		else{
-			batch.draw(tutorialButton, (int) (Gdx.graphics.getWidth()*0.5 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+			batch.draw(tutorialButton, (int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 		}
 		
 		
