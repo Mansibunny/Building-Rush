@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	SpriteBatch batch;
-	Texture menuBg, newgameButton, continueButton, tutorialButton, title;
+	Texture menuBg, newgameButton, continueButton, tutorialButton, title, map1;
 	Rectangle newgameButtonArea, continueButtonArea, tutorialButtonArea;
 	int page;
 	
@@ -21,13 +21,14 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		batch = new SpriteBatch();
 		page = 0;
 		menuBg = new Texture("menuBg.jpg");
-		title = new Texture("title.png");
+		title = new Texture("title2.png");
 		newgameButton = new Texture("newgameButton.png");
-		newgameButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, newgameButton.getWidth(), newgameButton.getHeight());
+		newgameButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, newgameButton.getWidth(), newgameButton.getHeight());
 		continueButton = new Texture("continueButton.png");
-		continueButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.5 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, continueButton.getWidth(), continueButton.getHeight());
+		continueButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 200, continueButton.getWidth(), continueButton.getHeight());
 		tutorialButton = new Texture("tutorialButton.png");
-		tutorialButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.5 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, tutorialButton.getWidth(), tutorialButton.getHeight());	
+		tutorialButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 350, tutorialButton.getWidth(), tutorialButton.getHeight());
+		map1 = new Texture("map1.jpg");
 		Gdx.input.setInputProcessor(this);
 	}
 
@@ -42,15 +43,15 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		}
 		
 		if (page == 1) {
-			tutorial();
+			pause();
 		}
 		
 		if (page == 2) {
-			game();
+			tutorial();
 		}
 		
 		if (page == 3) {
-			pause();
+			game();
 		}
 		
 		batch.end();
@@ -71,16 +72,6 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		batch.draw(menuBg, 0, 0);
 		batch.draw(title, (int) (Gdx.graphics.getWidth()*0.75 - title.getWidth()*0.5), (int) (Gdx.graphics.getHeight()*0.2 - title.getHeight()));
 		
-		if(newgameButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
-			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
-			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
-		        page = 1;
-		    }
-		}
-		else{
-			batch.draw(newgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
-		}
-		
 		if(continueButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
@@ -88,31 +79,38 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		    }
 		}
 		else{
-			batch.draw(continueButton, (int) (Gdx.graphics.getWidth()*0.5 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+			batch.draw(continueButton, (int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 200);
 		}
 		
 		if(tutorialButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
-		        page = 1;
+		        page = 2;
 		    }
 		}
 		else{
-			batch.draw(tutorialButton, (int) (Gdx.graphics.getWidth()*0.5 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+			batch.draw(tutorialButton, (int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 350);
+		}
+		if(newgameButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
+			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
+		        page = 3;
+		    }
+		}
+		else{
+			batch.draw(newgameButton, (int) (Gdx.graphics.getWidth()*0.2 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 		}
 		
-		
+	}
+	public void pause () {
+
 	}
 	public void tutorial () {
 		
 	}
 	
 	public void game () {
-		
-	}
-	
-	public void pause () {
-		
+		batch.draw(map1, 0, 0);
 	}
 	
 	public void save(){
