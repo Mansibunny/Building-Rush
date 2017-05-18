@@ -5,30 +5,55 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 
 public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	SpriteBatch batch;
-	Texture menuBg, newgameButton, continueButton, tutorialButton, title;
+	Texture menuBg, newgameButton, continueButton, tutorialButton, title, map1;
 	Rectangle newgameButtonArea, continueButtonArea, tutorialButtonArea;
-	int page;
+	int page, money;
+	BitmapFont font12, font32;
+	FreeTypeFontGenerator generator;
+	FreeTypeFontParameter parameter;
+	ShapeRenderer shapeRenderer;
+	Music menuMusic, themeMusic;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		page = 0;
 		menuBg = new Texture("menuBg.jpg");
-		title = new Texture("title.png");
+		title = new Texture("title2.png");
 		newgameButton = new Texture("newgameButton.png");
-		newgameButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 100, newgameButton.getWidth(), newgameButton.getHeight());
+		newgameButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, newgameButton.getWidth(), newgameButton.getHeight());
 		continueButton = new Texture("continueButton.png");
-		continueButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 300, continueButton.getWidth(), continueButton.getHeight());
+		continueButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 250, continueButton.getWidth(), continueButton.getHeight());
 		tutorialButton = new Texture("tutorialButton.png");
-		tutorialButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500, tutorialButton.getWidth(), tutorialButton.getHeight());	
+		tutorialButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 350, tutorialButton.getWidth(), tutorialButton.getHeight());	
 		Gdx.input.setInputProcessor(this);
+		map1 = new Texture("map1.jpg");
+		generator = new FreeTypeFontGenerator(Gdx.files.internal("RobotoCondensed-Regular.ttf"));
+		parameter = new FreeTypeFontParameter();
+		parameter.size = 12;
+		font12 = generator.generateFont(parameter);
+		parameter.size = 32;
+		font32 = generator.generateFont(parameter);
+		font12.setColor(Color.RED);
+		font32.setColor(Color.RED);
+		shapeRenderer = new ShapeRenderer();
+		money = 100;
+		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("menuMusic.ogg"));
+		themeMusic = Gdx.audio.newMusic(Gdx.files.internal("themeMusic.ogg"));
 	}
 
 	@Override
@@ -42,15 +67,15 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		}
 		
 		if (page == 1) {
-			tutorial();
+			pause();
 		}
 		
 		if (page == 2) {
-			game();
+			tutorial();
 		}
 		
 		if (page == 3) {
-			pause();
+			game();
 		}
 		
 		batch.end();
@@ -64,6 +89,11 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		continueButton.dispose();
 		tutorialButton.dispose();
 		title.dispose();
+		map1.dispose();
+		generator.dispose();
+		font12.dispose();
+		font32.dispose();
+		shapeRenderer.dispose();
 	}
 	
 	
@@ -71,36 +101,38 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		batch.draw(menuBg, 0, 0);
 		batch.draw(title, (int) (Gdx.graphics.getWidth()*0.75 - title.getWidth()*0.5), (int) (Gdx.graphics.getHeight()*0.2 - title.getHeight()));
 		
-		if(newgameButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
+		if(continueButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
 		        page = 1;
 		    }
 		}
 		else{
-			batch.draw(newgameButton, (int) (Gdx.graphics.getWidth()*0.2 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 100);
+			batch.draw(continueButton, (int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 200);
 		}
 		
-		if(continueButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
+		if(tutorialButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
 		        page = 2;
 		    }
 		}
 		else{
-			batch.draw(continueButton, (int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 300);
+			batch.draw(tutorialButton, (int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 350);
 		}
-		
-		if(tutorialButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
+		if(newgameButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
 		        page = 3;
 		    }
 		}
 		else{
-			batch.draw(tutorialButton, (int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+			batch.draw(newgameButton, (int) (Gdx.graphics.getWidth()*0.2 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 		}
 		
+		
+		menuMusic.setLooping(true);
+		menuMusic.play();
 		
 	}
 	public void tutorial () {
@@ -108,11 +140,26 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	}
 	
 	public void game () {
+		batch.draw(map1, 0, 0);
+		font32.draw(batch, "Hello World", 200, 200);
+		/*if(pauseButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
+			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
+		        page = 3;
+		    }
+		}
+		else{
+			batch.draw(pauseButton, (int) (Gdx.graphics.getWidth()*0.2 - pauseButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
+		}*/
 		
+		font32.draw(batch, "$"+money, 200, 700);
 	}
 	
 	public void pause () {
-		
+		shapeRenderer.begin(ShapeType.Filled);
+		shapeRenderer.setColor(0, 0, 0, (float) 0.5);
+		shapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		shapeRenderer.end();
 	}
 	
 	public void save(){
