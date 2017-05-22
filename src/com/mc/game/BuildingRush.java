@@ -19,7 +19,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	SpriteBatch batch;
-	Texture menuBg, newgameButton, continueButton, tutorialButton, title, map1;
+	Texture menuBg, newgameButton, continueButton, tutorialButton, title, map1, rightStat, topStat;
 	Rectangle newgameButtonArea, continueButtonArea, tutorialButtonArea;
 	int page, money;
 	BitmapFont font12, font32;
@@ -40,6 +40,10 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		continueButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - continueButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 250, continueButton.getWidth(), continueButton.getHeight());
 		tutorialButton = new Texture("tutorialButton.png");
 		tutorialButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 350, tutorialButton.getWidth(), tutorialButton.getHeight());	
+		rightStat = new Texture("rightStats.png");
+		topStat = new Texture("topStats.png");
+		
+		
 		Gdx.input.setInputProcessor(this);
 		map1 = new Texture("map1.jpg");
 		generator = new FreeTypeFontGenerator(Gdx.files.internal("RobotoCondensed-Regular.ttf"));
@@ -52,8 +56,8 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		font32.setColor(Color.RED);
 		shapeRenderer = new ShapeRenderer();
 		money = 100;
-		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("menuMusic.ogg"));
-		themeMusic = Gdx.audio.newMusic(Gdx.files.internal("themeMusic.ogg"));
+		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("[Drumstep] - Tristam & Braken - Flight [Monstercat Release].mp3"));
+		themeMusic = Gdx.audio.newMusic(Gdx.files.internal("[Drumstep] - Tristam & Braken - Flight [Monstercat Release].mp3"));
 	}
 
 	@Override
@@ -88,6 +92,8 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		newgameButton.dispose();
 		continueButton.dispose();
 		tutorialButton.dispose();
+		rightStat.dispose();
+		topStat.dispose();
 		title.dispose();
 		map1.dispose();
 		generator.dispose();
@@ -141,6 +147,8 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	
 	public void game () {
 		batch.draw(map1, 0, 0);
+		batch.draw(rightStat,Gdx.graphics.getWidth() - rightStat.getWidth(),Gdx.graphics.getHeight()-rightStat.getHeight());
+		batch.draw(topStat,0,Gdx.graphics.getHeight()-topStat.getHeight());
 		font32.draw(batch, "Hello World", 200, 200);
 		/*if(pauseButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
