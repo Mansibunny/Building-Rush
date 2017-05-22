@@ -52,8 +52,8 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		font32.setColor(Color.RED);
 		shapeRenderer = new ShapeRenderer();
 		money = 100;
-		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("menuMusic.ogg"));
-		themeMusic = Gdx.audio.newMusic(Gdx.files.internal("themeMusic.ogg"));
+		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("[Drumstep] - Tristam & Braken - Flight [Monstercat Release].mp3"));
+		themeMusic = Gdx.audio.newMusic(Gdx.files.internal("[Drumstep] - Tristam & Braken - Flight [Monstercat Release].mp3"));
 	}
 
 	@Override
