@@ -19,11 +19,14 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	SpriteBatch batch;
-	Texture menuBg, newgameButton, continueButton, tutorialButton, title, map1, rightStat, topStat;
-	Rectangle newgameButtonArea, continueButtonArea, tutorialButtonArea;
+	Texture menuBg, newgameButton, continueButton, tutorialButton, title, map1, rightStat, topStat, 
+	menuPane, musicPlayButton, musicStopButton, soundPlayButton, soundStopButton, menuButton, 
+	buyTruckButton, sellTruckButton, truckStat, postOffPic, truckIcon, moneyIcon, profitIcon,
+	oneStar, twoStar, threeStar, buildCostBox, moneyStatBox, timeBox;
+	Rectangle newgameButtonArea, continueButtonArea, tutorialButtonArea, buildButtonArea, ProfitStatBox, BronzeBar, SilverBar, GoldBar;
 	int page, money;
 	BitmapFont font12, font32;
-	FreeTypeFontGenerator generator;
+	FreeTypeFontGenerator generator, coopBl, arJul;
 	FreeTypeFontParameter parameter;
 	ShapeRenderer shapeRenderer;
 	Music menuMusic, themeMusic;
@@ -42,11 +45,32 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		tutorialButtonArea = new Rectangle((int) (Gdx.graphics.getWidth()*0.2 - tutorialButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 350, tutorialButton.getWidth(), tutorialButton.getHeight());	
 		rightStat = new Texture("rightStats.png");
 		topStat = new Texture("topStats.png");
+		menuPane = new Texture("mainButtonPane.png");
+		musicPlayButton = new Texture("buttons3015.png");
+		musicStopButton = new Texture("buttons3017.png");
+		soundPlayButton = new Texture("buttons3018.png");
+		soundStopButton = new Texture("buttons3019.png");
+		menuButton = new Texture("buttons4002.png");
+		buyTruckButton = new Texture("buttons2012.png");
+		sellTruckButton = new Texture("buttons2004.png");
+		truckStat = new Texture("buttons2017.png");
+		postOffPic = new Texture("postOffIcon.png");
+		truckIcon = new Texture("truckIcon2.png");
+		moneyIcon = new Texture("moneyIcon.png");
+		profitIcon = new Texture("profitIcon.png");
+		oneStar = new Texture("buttons3021.png");
+		twoStar = new Texture("buttons3022.png");
+		threeStar = new Texture("buttons3023.png");
+		buildCostBox = new Texture("BlackStatSmall.png");
+		moneyStatBox = new Texture("BlackStatLong.png");
+		timeBox = new Texture("BlackStatTime.png");
 		
 		
 		Gdx.input.setInputProcessor(this);
 		map1 = new Texture("map1.jpg");
 		generator = new FreeTypeFontGenerator(Gdx.files.internal("RobotoCondensed-Regular.ttf"));
+		coopBl = new FreeTypeFontGenerator(Gdx.files.internal("COOPBL.ttf"));
+		arJul = new FreeTypeFontGenerator(Gdx.files.internal("ARJULIAN.ttf"));
 		parameter = new FreeTypeFontParameter();
 		parameter.size = 12;
 		font12 = generator.generateFont(parameter);
@@ -149,6 +173,27 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		batch.draw(map1, 0, 0);
 		batch.draw(rightStat,Gdx.graphics.getWidth() - rightStat.getWidth(),Gdx.graphics.getHeight()-rightStat.getHeight());
 		batch.draw(topStat,0,Gdx.graphics.getHeight()-topStat.getHeight());
+		batch.draw(menuPane,1178,728,100,100);
+		batch.draw(moneyStatBox,1100,710,70,115);
+		batch.draw(musicPlayButton,1184,778,43,43);
+		//batch.draw(musicStopButton)
+		batch.draw(soundPlayButton,1230,778,43,43);
+		//batch.draw(soundStopButton)
+		batch.draw(menuButton,1186,740,85,35);
+		batch.draw(buyTruckButton,1110,520,75,75);
+		batch.draw(sellTruckButton,1190,520,75,75);
+		batch.draw(truckStat,1102,600,170,50);
+		batch.draw(postOffPic,1195,660,60,60);
+		batch.draw(truckIcon,1110,595,50,50);
+		batch.draw(moneyIcon,1050,760,64,64);
+		/*batch.draw(profitIcon)
+		batch.draw(oneStar)
+		batch.draw(twoStar)
+		batch.draw(threeStar)*/
+		batch.draw(buildCostBox,1110,665,70,35);
+		//batch.draw(timeBox)
+		
+		//batch.draw(buildButton,(int) (Gdx.graphics.getWidth()*0.988),(int) (Gdx.graphics.getHeight()*0.9- buildButton.getHeight()), buildButton.getWidth()-480, buildButton.getHeight()-50);
 		font32.draw(batch, "Hello World", 200, 200);
 		/*if(pauseButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
