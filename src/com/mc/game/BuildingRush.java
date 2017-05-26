@@ -25,7 +25,7 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	oneStar, twoStar, threeStar, buildCostBox, moneyStatBox, timeBox;
 	Rectangle newgameButtonArea, continueButtonArea, tutorialButtonArea, buildButtonArea, ProfitStatBox, BronzeBar, SilverBar, GoldBar;
 	int page, money;
-	BitmapFont font12, font32;
+	BitmapFont font12, font32, fontCB20, fontAJ18;
 	FreeTypeFontGenerator generator, coopBl, arJul;
 	FreeTypeFontParameter parameter;
 	ShapeRenderer shapeRenderer;
@@ -76,8 +76,17 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		font12 = generator.generateFont(parameter);
 		parameter.size = 32;
 		font32 = generator.generateFont(parameter);
-		font12.setColor(Color.RED);
+		font12.setColor(Color.WHITE);
 		font32.setColor(Color.RED);
+		
+		parameter.size = 20;
+		fontCB20 = coopBl.generateFont(parameter);
+		fontCB20.setColor(Color.WHITE);
+		
+		parameter.size = 18;
+		fontAJ18 = arJul.generateFont(parameter);
+		fontAJ18.setColor(Color.WHITE);
+		
 		shapeRenderer = new ShapeRenderer();
 		money = 100;
 		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("[Drumstep] - Tristam & Braken - Flight [Monstercat Release].mp3"));
@@ -195,6 +204,9 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		
 		//batch.draw(buildButton,(int) (Gdx.graphics.getWidth()*0.988),(int) (Gdx.graphics.getHeight()*0.9- buildButton.getHeight()), buildButton.getWidth()-480, buildButton.getHeight()-50);
 		font32.draw(batch, "Hello World", 200, 200);
+		fontCB20.draw(batch, "BUY", 1125, 580);
+		fontCB20.draw(batch, "SELL", 1201, 580);
+		fontAJ18.draw(batch, "MENU",1201,775);
 		/*if(pauseButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
@@ -205,7 +217,7 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 			batch.draw(pauseButton, (int) (Gdx.graphics.getWidth()*0.2 - pauseButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 		}*/
 		
-		font32.draw(batch, "$"+money, 200, 700);
+		font12.draw(batch, "$"+money, 200, 700);
 	}
 	
 	public void pause () {
