@@ -195,10 +195,10 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		batch.draw(postOffPic,1195,660,60,60);
 		batch.draw(truckIcon,1110,595,50,50);
 		batch.draw(moneyIcon,1050,760,64,64);
-		/*batch.draw(profitIcon)
-		batch.draw(oneStar)
-		batch.draw(twoStar)
-		batch.draw(threeStar)*/
+		batch.draw(profitIcon,135,760,64,64);
+		batch.draw(oneStar,560,750,55,55);
+		batch.draw(twoStar,700,750,55,55);
+		batch.draw(threeStar,800,750,55,55);
 		batch.draw(buildCostBox,1110,665,70,35);
 		//batch.draw(timeBox)
 		
@@ -206,7 +206,7 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		font32.draw(batch, "Hello World", 200, 200);
 		fontCB20.draw(batch, "BUY", 1125, 580);
 		fontCB20.draw(batch, "SELL", 1201, 580);
-		fontAJ18.draw(batch, "MENU",1201,775);
+		fontAJ18.draw(batch, "MENU",1203,763);
 		/*if(pauseButtonArea.contains(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY())) {
 			//batch.draw(pnewgameButton, (int) (Gdx.graphics.getWidth()*0.5 - newgameButton.getWidth()*0.5), Gdx.graphics.getHeight() - title.getHeight() - 500);
 			if(Gdx.input.isButtonPressed(Buttons.LEFT)){
