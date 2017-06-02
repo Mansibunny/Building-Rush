@@ -196,9 +196,13 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		batch.draw(truckIcon,1110,595,50,50);
 		batch.draw(moneyIcon,1050,760,64,64);
 		batch.draw(profitIcon,135,760,64,64);
+		shapeRenderer.begin(ShapeType.Filled);
+		shapeRenderer.setColor(Color.DARK_GRAY);
+		shapeRenderer.rect(350,770,230,50);
+		shapeRenderer.end();
 		batch.draw(oneStar,560,750,55,55);
-		batch.draw(twoStar,700,750,55,55);
-		batch.draw(threeStar,800,750,55,55);
+		batch.draw(twoStar,740,750,55,55);
+		batch.draw(threeStar,900,750,55,55);
 		batch.draw(buildCostBox,1110,665,70,35);
 		//batch.draw(timeBox)
 		
@@ -218,6 +222,7 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		}*/
 		
 		font12.draw(batch, "$"+money, 200, 700);
+		
 	}
 	
 	public void pause () {
