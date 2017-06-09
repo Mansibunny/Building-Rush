@@ -29,7 +29,7 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	
 	yourPostOffice, blueHouse,
 	greenHouse, brownFactoryBack, brownFactoryFront, brownFactorySide, bush, flowerO, flowerPi, flowerY, flowerB,
-	flowerPu, fountain, grayFactoryFront, grayFactorySide, hospital, icecreamShop, library, mailbox,
+	flowerPu, fountain, grayFactoryFront, grayFactorySide, grayFactorySideFlip, hospital, icecreamShop, library, mailbox,
 	museum, mud1,mud2,mud3, mudGroup, shedBack, shedFront, tree;
 	
 	Rectangle newgameButtonArea, continueButtonArea, tutorialButtonArea, ProfitStatBox, BronzeBar, SilverBar, GoldBar,
@@ -98,6 +98,7 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		fountain = new Texture("fountain.png");
 		grayFactoryFront = new Texture("grayFactoryFront.png");
 		grayFactorySide = new Texture("grayFactorySide.png");
+		grayFactorySideFlip = new Texture("grayFactorySideFlip.png");
 		hospital = new Texture("hospital.png");
 		icecreamShop = new Texture("icecreamShop.png");
 		library = new Texture("library.png");
@@ -284,31 +285,37 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		batch.draw(brownFactoryBack,765,470,70,100);
 		batch.draw(brownFactoryFront,1085,125,70,100);
 		batch.draw(brownFactorySide,384,448,60,100);
+		batch.draw(brownFactorySide,192,185,60,100);
 		batch.draw(bush,650,380,20,20);
 		batch.draw(bush,340,340,20,20);
 		batch.draw(bush,30,150,20,20);
+		batch.draw(bush,600,210,20,20);
+		batch.draw(bush,723,210,20,20);
 		//batch.draw(flowerO);
-		batch.draw(flowerPi,665,270);
-		batch.draw(flowerY,645,270);
-		batch.draw(flowerB,685,270);
+		batch.draw(mudGroup,625,265);
+		batch.draw(flowerPi,665,275);
+		batch.draw(flowerY,645,275);
+		batch.draw(flowerB,685,275);
 		//batch.draw(flowerPu);
-		batch.draw(fountain,640,192);
+		batch.draw(fountain,641,192);
 		batch.draw(fountain,192,320);
 		batch.draw(fountain,192,64);
 		batch.draw(grayFactoryFront,820,125,70,100);
-		/*batch.draw(grayFactorySide);
-		batch.draw(hospital);
-		batch.draw(icecreamShop);
-		batch.draw(library);
-		batch.draw(mailbox);
-		batch.draw(museum);
-		batch.draw(mud1);
+		batch.draw(grayFactorySide,384,256,60,100);
+		batch.draw(grayFactorySideFlip,962,380,60,100);
+		batch.draw(hospital,962,256,60,80);
+		batch.draw(icecreamShop,832,380,60,60);
+		batch.draw(icecreamShop,320,635,61,60);
+		batch.draw(library,640,640,128,80);
+		//batch.draw(mailbox);
+		batch.draw(museum,514,126,60,78);
+		/*batch.draw(mud1);
 		batch.draw(mud2);
-		batch.draw(mud3);
-		batch.draw(mudGroup);
-		batch.draw(shedBack);
-		batch.draw(shedFront);
-		batch.draw(tree);*/
+		batch.draw(mud3);*/
+		batch.draw(shedBack,832,256,60,60);
+		batch.draw(shedBack,576,512,60,60);
+		batch.draw(shedFront,450,640,60,60);
+		//batch.draw(tree);*/
 		
 		//batch.draw(timeBox)
 		
