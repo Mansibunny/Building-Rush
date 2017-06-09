@@ -21,10 +21,17 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 	SpriteBatch batch;
+	
 	Texture menuBg, newgameButton, continueButton, tutorialButton, title, map1, rightStat, topStat, 
 	menuPane, musicPlayButton, musicStopButton, soundPlayButton, soundStopButton, pauseButton, 
 	buyTruckButton, sellTruckButton, truckStat, postOffPic, truckIcon, moneyIcon, profitIcon,
-	oneStar, twoStar, threeStar, buildCostBox, moneyStatBox, timeBox;
+	oneStar, twoStar, threeStar, buildCostBox, moneyStatBox, timeBox,
+	
+	yourPostOffice, blueHouse,
+	greenHouse, brownFactoryBack, brownFactoryFront, brownFactorySide, bush, flowerO, flowerPi, flowerY, flowerB,
+	flowerPu, fountain, grayFactoryFront, grayFactorySide, hospital, icecreamShop, library, mailbox,
+	museum, mud1,mud2,mud3, mudGroup, shedBack, shedFront, tree;
+	
 	Rectangle newgameButtonArea, continueButtonArea, tutorialButtonArea, ProfitStatBox, BronzeBar, SilverBar, GoldBar,
 	buyTruckButtonArea, sellTruckButtonArea;
 	Circle musicButtonArea, soundButtonArea, pauseButtonArea;
@@ -75,6 +82,34 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		buildCostBox = new Texture("BlackStatSmall.png");
 		moneyStatBox = new Texture("BlackStatLong.png");
 		timeBox = new Texture("BlackStatTime.png");
+		
+		yourPostOffice = new Texture("postOffice.png");
+		blueHouse = new Texture("blueHouse.png");
+		greenHouse = new Texture("greenHouse.png");
+		brownFactoryBack = new Texture("brownFactoryBack.png");
+		brownFactoryFront = new Texture("brownFactoryFront.png");
+		brownFactorySide = new Texture("brownFactorySide.png");
+		bush = new Texture("bush.png");
+		flowerO = new Texture("flowers001.png");
+		flowerPi = new Texture("flowers002.png");
+		flowerY = new Texture("flowers003.png");
+		flowerB = new Texture("flowers004.png");
+		flowerPu = new Texture("flowers005.png");
+		fountain = new Texture("fountain.png");
+		grayFactoryFront = new Texture("grayFactoryFront.png");
+		grayFactorySide = new Texture("grayFactorySide.png");
+		hospital = new Texture("hospital.png");
+		icecreamShop = new Texture("icecreamShop.png");
+		library = new Texture("library.png");
+		mailbox = new Texture("mailbox.png");
+		museum = new Texture("museum.png");
+		mud1 = new Texture("mud1.png");
+		mud2 = new Texture("mud2.png");
+		mud3 = new Texture("mud3.png");
+		mudGroup = new Texture("mudGroup.png");
+		shedBack = new Texture("shedBack.png");
+		shedFront = new Texture("shedFront.png");
+		tree = new Texture("tree.png");
 		
 		
 		Gdx.input.setInputProcessor(this);
@@ -240,6 +275,40 @@ public class BuildingRush extends ApplicationAdapter implements InputProcessor{
 		batch.draw(threeStar,900,750,55,55);
 		batch.draw(profitIcon,135,760,64,64);
 		batch.draw(buildCostBox,1110,665,70,35);
+		batch.draw(yourPostOffice,575,380,64,70);
+		batch.draw(yourPostOffice,384,125,64,70);
+		batch.draw(yourPostOffice,960,125,64,70);
+		batch.draw(blueHouse,706,380,60,60);
+		batch.draw(greenHouse,514,256,60,60);
+		batch.draw(greenHouse,898,638,60,60);
+		batch.draw(brownFactoryBack,765,470,70,100);
+		batch.draw(brownFactoryFront,1085,125,70,100);
+		batch.draw(brownFactorySide,384,448,60,100);
+		batch.draw(bush,650,380,20,20);
+		batch.draw(bush,340,340,20,20);
+		batch.draw(bush,30,150,20,20);
+		//batch.draw(flowerO);
+		batch.draw(flowerPi,665,270);
+		batch.draw(flowerY,645,270);
+		batch.draw(flowerB,685,270);
+		//batch.draw(flowerPu);
+		batch.draw(fountain,640,192);
+		batch.draw(fountain,192,320);
+		batch.draw(fountain,192,64);
+		batch.draw(grayFactoryFront,820,125,70,100);
+		/*batch.draw(grayFactorySide);
+		batch.draw(hospital);
+		batch.draw(icecreamShop);
+		batch.draw(library);
+		batch.draw(mailbox);
+		batch.draw(museum);
+		batch.draw(mud1);
+		batch.draw(mud2);
+		batch.draw(mud3);
+		batch.draw(mudGroup);
+		batch.draw(shedBack);
+		batch.draw(shedFront);
+		batch.draw(tree);*/
 		
 		//batch.draw(timeBox)
 		
